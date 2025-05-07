@@ -16,8 +16,8 @@ This repository provides an end-to-end framework for **multivariate dependence m
 
 | File | Description |
 |------|-------------|
-| `HW4_HaoChun_Shih.Rnw` | Main R + LaTeX source |
-| `HW4_HaoChun_Shih.pdf` | Compiled report |
+| `Robust-Dependence-Modeling-and-Copula-Simulation.Rnw` | Main R + LaTeX source |
+| `Robust-Dependence-Modeling-and-Copula-Simulation.pdf` | Compiled report |
 | `stock_returns.csv` | Daily return data of tech & construction sector stocks |
 
 ---
