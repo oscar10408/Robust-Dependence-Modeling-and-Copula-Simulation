@@ -29,9 +29,11 @@ This repository provides an end-to-end framework for **multivariate dependence m
 - Constructed 95% confidence intervals from chi-squared thresholds
 
 📈 Profile likelihood curves:
+
 <img src="Images/profile_log-lik-1.png" width="600"/>
 
 📊 Decade-wise ν Estimates with CI:
+
 <img src="Images/CI_for_Profile-1.png" width="500"/>
 
 **Result:**
