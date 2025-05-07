@@ -36,7 +36,7 @@ This repository provides an end-to-end framework for **multivariate dependence m
 
 ---
 
-## 🧭 Problem 1b: Decade-wise Analysis (1980s–2010s)
+## 🧭 Decade-wise Analysis (1980s–2010s)
 
 Estimated ν and 95% CIs for both sectors per decade:
 
@@ -57,7 +57,7 @@ Estimated ν and 95% CIs for both sectors per decade:
 
 ---
 
-## 🔁 Problem 2: Copula Simulation and Calibration
+## 🔁 Copula Simulation and Calibration
 
 - Implemented `sim_Gauss_copula()` and `sim_T_copula()` for generating Gaussian and t-copula samples
 - Calibrated copulas for IBM & CAT using empirical Kendall’s τ
