@@ -8,7 +8,65 @@ This repository provides an end-to-end framework for **multivariate dependence m
 - Visualization of empirical vs. simulated copulas
 - Estimation of tail dependence coefficients
 
-> 📘 Part of EECS 545 coursework at the University of Michigan.
+## 🧮 Sample Code
+
+```r
+loglik_t <- function(nu, data) { 
+  mu_hat <- colMeans(data)
+  cov_hat <- cov(data)
+  loglik <- dmvt(data, delta = mu_hat, sigma = cov_hat, df = nu, log = TRUE)
+  sum(loglik)
+}
+
+nu.grid <- seq(2.5, 4.5, 0.01)
+profile.log.lik <- sapply(nu.grid, loglik_t, data = stock_data)
+
+# Confidence interval threshold (chi-squared 95%)
+threshold <- max(profile.log.lik) - qchisq(0.95, df = 1) / 2
+
+U_empirical <- pobs(cbind(stock1, stock2))  # pseudo-observations from returns
+
+# Estimate Kendall's tau
+tau <- cor(U_empirical[,1], U_empirical[,2], method = "kendall")
+rho <- sin(tau * pi / 2)  # Convert to Gaussian copula rho
+
+sim_Gauss_copula <- function(n, rho) {
+  library(MASS)
+  Sig <- matrix(c(1, rho, rho, 1), nrow = 2)
+  z <- mvrnorm(n, mu = c(0, 0), Sigma = Sig)
+  pnorm(z)
+}
+
+# Simulate t-copula
+sim_T_copula <- function(n, Sig, nu) {
+  z <- MASS::mvrnorm(n, mu = rep(0, ncol(Sig)), Sigma = Sig)
+  t_sample <- z / sqrt(rchisq(n, df = nu) / nu)
+  pt(t_sample, df = nu)
+}
+
+lambda <- function(data, p, upper = FALSE) {
+  x <- data[,1]
+  y <- data[,2]
+  u_x <- rank(x) / (length(x) + 1)
+  u_y <- rank(y) / (length(y) + 1)
+
+  sapply(p, function(a) {
+    if (upper) {
+      sum(u_x > 1 - a & u_y > 1 - a) / sum(u_x > 1 - a)
+    } else {
+      sum(u_x < a & u_y < a) / sum(u_x < a)
+    }
+  })
+}
+
+alpha_seq <- seq(0.001, 0.1, length.out = 100)
+lambda_empirical <- lambda(U_empirical, alpha_seq)
+
+copula_plot <- function(U, title) {
+  library(copula)
+  contourplot(copulaEmpirical(U), main = title)
+}
+```
 
 ---
 
