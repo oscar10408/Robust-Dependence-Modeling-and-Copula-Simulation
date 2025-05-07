@@ -28,6 +28,12 @@ This repository provides an end-to-end framework for **multivariate dependence m
 - Estimated ν using profile log-likelihood
 - Constructed 95% confidence intervals from chi-squared thresholds
 
+📈 Profile likelihood curves:
+<img src="Images/profile_log-lik-1.png" width="600"/>
+
+📊 Decade-wise ν Estimates with CI:
+<img src="Images/CI_for_Profile-1.png" width="500"/>
+
 **Result:**
 - **Tech sector**: more heavy-tailed (lower ν), higher volatility
 - **Construction sector**: more stable (higher ν), lighter tails
@@ -63,6 +69,15 @@ Estimated ν and 95% CIs for both sectors per decade:
 - Calibrated copulas for IBM & CAT using empirical Kendall’s τ
 - Compared empirical vs. simulated copulas for various ν values
 
+📌 Gaussian Copula Fit (Red = Model, Black = Empirical):
+<img src="Images/Guassian_Copula.png" width="500"/>
+
+📌 t-Copula Fit for Various Degrees of Freedom:
+<img src="Images/T-Copula.png" width="500"/>
+
+📌 t-Copula Simulated Scatter Plots with Contours:
+<img src="Images/T-Copula-Simulation.png" width="600"/>
+
 ```r
 sim_T_copula <- function(n, Sig, nu){
   Z = MASS::mvrnorm(n, mu = rep(0, ncol(Sig)), Sigma = Sig)
@@ -74,7 +89,7 @@ sim_T_copula <- function(n, Sig, nu){
 ---
 ## 🧩 Tail Dependence Estimation
 Plotted empirical vs. t-copula lower tail dependence:
-
+<img src="Images/Tail-dependence-1.png" width="500"/>
 
 ```r
 plot(alpha_seq, lambda_empirical, type="l", col="blue", lwd=2,
