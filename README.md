@@ -157,3 +157,13 @@ plot(alpha_seq, lambda_empirical, type="l", col="blue", lwd=2,
 lines(alpha_seq, lambda_t_copula, col="red", lwd=2)
 legend("topright", legend=c("Empirical", "t-Copula (ν=5)"), col=c("blue", "red"), lty=1)
 ```
+
+---
+
+## 💻 How to Compile
+
+To reproduce the report:
+
+1. Open `Robust-Dependence-Modeling-and-Copula-Simulation.Rnw` in **RStudio**
+2. Set knitting engine to **knitr**
+3. Click **Knit to PDF**
